@@ -1,27 +1,18 @@
 import React, {Component} from 'react'
 import {Panel, FieldSet, Container, Button} from '@sencha/ext-classic';
 
-
-import {ExtReact} from '@sencha/ext-react'
-
-
-//import {Signal, SignalBinding} from 'signals';
-
-import {Signal} from "@robotlegsjs/signals";
-
-
-//import { FormPanel, SelectField } from '@sencha/ext-modern';
-
-//Ext.require('Ext.Toast');
-import {Grid, Column} from '@sencha/ext-classic';
-
+import {Signal, DeluxeSignal} from "@robotlegsjs/signals";
 
 /**
  *
  */
 export default class App extends Component {
 
-    signal4XXX = new Signal();
+    signal4AAA = new Signal();
+    signal4BBB = new Signal();
+
+    signal4YYY = new DeluxeSignal(this.signal4AAA, this.signal4BBB);
+
     /**
      *
      * @param {Ext.Button} button
@@ -33,10 +24,15 @@ export default class App extends Component {
         console.log('???--' + e.getX());
         console.log('!!!---->>>' + JSON.stringify(additionalOpts));
 
-        me.signal4XXX.add(Ext.bind(me._onClicked, me, [{aa: '123', bb: '456'}], true));
+        me.signal4AAA.add(Ext.bind(me._onClicked, me, [{aa: '123', bb: '456'}], true));
 
 
-        me.signal4XXX.dispatch({message: "hello signal!"});
+
+
+
+
+
+        me.signal4AAA.dispatch({message: "hello signal!"});
         console.log('???--' + e.getX());
     }
 
